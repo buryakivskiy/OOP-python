@@ -4,29 +4,33 @@ sign = '+-'
 
 def result(userInput, index, res):
     if not userInput[index].isdigit() and userInput[index] not in sign:
-        return '(False, None)'
+        return False, None
     elif userInput[index] in sign and index == len(userInput)-1:
-        return '(False, None)'
+        return False, None
     elif userInput[index] in sign and userInput[index+1] in sign:
-        return '(False, None)'
+        return False, None
     elif not userInput[index].isdigit() and userInput[index] not in sign:
-        return '(False, None)'
+        return False, None
     elif len(userInput)==0:
         return False, None
     else:
         if index == len(userInput)-1:
             if len(userInput) == 1:
-                return '(True, ' + userInput[index] + ')'
+                return True, userInput[index]
             else:
-                return '(True, ' + str(res) + ')'
-        elif index == 0:
-            res += calculateNumber(userInput, index, '')
-            return result(userInput, index+1, res)
+                return True, res
         elif userInput[index] in sign:
             if not userInput[index+1].isdigit():
-                return '(False, None)'
+                return False, None
             res = res + eval(userInput[index] + str(calculateNumber(userInput, index+1, '')))
             return result(userInput, index+1, res)
+        elif index == 0:
+            if userInput[index] not in sign:
+                res += calculateNumber(userInput, index, '')
+                return result(userInput, index+1, res)
+            else:
+                res = eval(userInput[index] +  str(calculateNumber(userInput, index+1, '')))
+                return result(userInput, index+2, res)
         else:
             return result(userInput, index+1, res)
 
@@ -39,7 +43,7 @@ def calculateNumber(userInput, index, number):
     return calculateNumber(userInput, index+1, number)
 
 if len(sys.argv)==1:
-    print('(False, None)')
+    print(False, None)
 else:
     userInput = sys.argv[1]
     print(result(userInput, 0, 0))
