@@ -11,4 +11,5 @@ def knapsack(capasity, weights):
 
 capasity = int(input())
 weights = list(map(int, input().split()))
+
 knapsack(capasity, weights)
