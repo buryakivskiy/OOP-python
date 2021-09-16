@@ -1,26 +1,14 @@
 import sys
+import operator
 
-inputString = sys.argv[1:]
-
-def calculate(inputString):
+def calculate(string):
     try:
-        action = inputString[0]
-        operandOne = int(inputString[1])
-        operandTwo = int(inputString[2])
-        formul = {
-            'add' : operandOne + operandTwo,
-            'sub' : operandOne - operandTwo,
-            'myl' : operandOne * operandTwo,
-            'div' : operandOne / operandTwo,
-        }
-        return formul[action]
+        act = string[1]
+        if act == 'add': return operator.add(int(string[2]), int(string[3]))
+        elif act == 'sub': return operator.sub(int(string[2]), int(string[3]))
+        elif act == 'mull': return operator.mul(int(string[2]), int(string[3]))
+        elif act == 'div': return operator.truediv(int(string[2]), int(string[3]))
     except:
-        return 'Something went wrong'
-    
+        return None
 
-if len(inputString) > 3:
-    print('Need only 3 arguments')
-else:
-    print(calculate(inputString))
-
-# use operators i
+print(calculate(sys.argv[:]))
