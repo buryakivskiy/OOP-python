@@ -1,6 +1,13 @@
 from sys import argv
 
-if (argv[2].find('.') == True):
-    argv[2] = '*'
-    
-print(eval(argv[1]+argv[2]+argv[-1]))
+formula = argv[:]
+
+def calculate(string):
+    try:
+        if string[2].find('.') == True:
+            string[2] = '*'
+        return eval(string[1]+string[2]+string[-1])
+    except:
+        return 'Something went wrong'
+
+print(calculate(formula))

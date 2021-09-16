@@ -1,14 +1,24 @@
 import sys
 
-action = sys.argv[1]
-operandOne = int(sys.argv[2])
-operandTwo = int(sys.argv[3])
+inputString = sys.argv[1:]
 
-calculate = {
-    'add' : operandOne + operandTwo,
-    'sub' : operandOne - operandTwo,
-    'myl' : operandOne * operandTwo,
-    'div' : operandOne / operandTwo,
-}
-
-print(calculate[action])
+def calculate(inputString):
+    try:
+        action = inputString[0]
+        operandOne = int(inputString[1])
+        operandTwo = int(inputString[2])
+        formul = {
+            'add' : operandOne + operandTwo,
+            'sub' : operandOne - operandTwo,
+            'myl' : operandOne * operandTwo,
+            'div' : operandOne / operandTwo,
+        }
+        return formul[action]
+    except:
+        return 'Something went wrong'
+    
+    
+if len(inputString) > 3:
+    print('Need only 3 arguments')
+else:
+    print(calculate(inputString))
