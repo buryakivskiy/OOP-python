@@ -8,6 +8,6 @@ def calculate(string):
             string[2] = '*'
         return eval(string[1]+string[2]+string[-1])
     except:
-        return 'Something went wrong'
+        return None
 
 print(calculate(formula))

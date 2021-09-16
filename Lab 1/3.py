@@ -5,15 +5,17 @@ sign = '+-'
 def result(userInput, index, res):
     if not userInput[index].isdigit() and userInput[index] not in sign:
         return '(False, None)'
+    elif userInput[index] in sign and index == len(userInput)-1:
+        return '(False, None)'
     elif userInput[index] in sign and userInput[index+1] in sign:
         return '(False, None)'
     elif not userInput[index].isdigit() and userInput[index] not in sign:
         return '(False, None)'
     elif len(userInput)==0:
-        return '(False, None)'
+        return False, None
     else:
         if index == len(userInput)-1:
-            if (len(userInput) == 1):
+            if len(userInput) == 1:
                 return '(True, ' + userInput[index] + ')'
             else:
                 return '(True, ' + str(res) + ')'

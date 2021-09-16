@@ -17,8 +17,10 @@ def calculate(inputString):
     except:
         return 'Something went wrong'
     
-    
+
 if len(inputString) > 3:
     print('Need only 3 arguments')
 else:
     print(calculate(inputString))
+
+# use operators i
