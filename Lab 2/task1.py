@@ -13,12 +13,12 @@ class Rectangle:
     def getWid(self):
         return self.width
     def setLen(self, value):
-        if (value > 0 and value < 20):
+        if value > 0 and value < 20:
             self.lenght = value
         else:
             return None
     def setWid(self, value):
-        if (value > 0 and value < 20):
+        if value > 0 and value < 20:
             self.width = value
         else:
             return None
@@ -28,7 +28,7 @@ def main():
         while(True):
             print('Enter length and width: ')
             len, wid = map(float, input().split())
-            if (len <= 0 or wid <= 0):
+            if len <= 0 or wid <= 0:
                 print('Uncorrect values!\n')
             else: 
                 break
