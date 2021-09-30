@@ -16,12 +16,12 @@ class Rectangle:
         if (value > 0 and value < 20):
             self.lenght = value
         else:
-            print('uncorrect')
+            return None
     def setWid(self, value):
         if (value > 0 and value < 20):
             self.width = value
         else:
-            print('uncorrect')
+            return None
 
 def main():
     try:
