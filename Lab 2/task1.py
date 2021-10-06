@@ -1,45 +1,48 @@
 class Rectangle:
-    lenght: float
-    width: float
     def __init__(self, lenght=1, width=1):
-        self.lenght = lenght
-        self.width = width
+        self.__lenght = lenght
+        self.__width = width
+
+    @property
+    def lenght(self):
+        return self.__lenght
+
+    @lenght.setter
+    def lenght(self, len):
+        if isinstance(len, float) and len > 0 and len < 20:
+            self.__lenght = len
+        else:
+            return TypeError
+    
+    @property
+    def width(self):
+        return self.__width
+
+    @width.setter
+    def width(self, wid):
+        if isinstance(wid, float) and wid > 0 and wid < 20:
+            self.__width = wid
+        else:
+            return TypeError
+
     def perimeter(self):
         return (self.width + self.lenght)*2
+        
     def area(self):
         return self.width * self.lenght
-    def getlen(self):
-        return self.lenght
-    def getWid(self):
-        return self.width
-    def setLen(self, value):
-        if value > 0 and value < 20:
-            self.lenght = value
-        else:
-            return None
-    def setWid(self, value):
-        if value > 0 and value < 20:
-            self.width = value
-        else:
-            return None
 
 def main():
     try:
-        while(True):
-            print('Enter length and width: ')
-            len, wid = map(float, input().split())
-            if len <= 0 or wid <= 0:
-                print('Uncorrect values!\n')
-            else: 
-                break
+        print('Enter length and width: ')
+        len, wid = map(float, input().split())
         rectangle = Rectangle()
-        rectangle.setLen(len)
-        rectangle.setWid(wid)
-        print('Lenght is: ', rectangle.getlen())
-        print('Width is: ', rectangle.getWid())
+        rectangle.lenght = len
+        rectangle.width = wid
+        print('Lenght is: ', rectangle.lenght)
+        print('Width is: ', rectangle.lenght)
         print('perimeter is: ', rectangle.perimeter())
         print('area is: ', rectangle.area())
     except:
-        print('Something went wrong!')
+        TypeError
 
 main()
