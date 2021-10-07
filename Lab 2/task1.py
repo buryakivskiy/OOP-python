@@ -39,10 +39,11 @@ def main():
         rectangle.lenght = len
         rectangle.width = wid
         print('Lenght is: ', rectangle.lenght)
-        print('Width is: ', rectangle.lenght)
+        print('Width is: ', rectangle.width)
         print('perimeter is: ', rectangle.perimeter())
         print('area is: ', rectangle.area())
+        return { "success": True }
     except:
-        TypeError
+        return TypeError
 
-main()
+print(main())
