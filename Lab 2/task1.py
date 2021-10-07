@@ -12,7 +12,7 @@ class Rectangle:
         if isinstance(len, float) and len > 0 and len < 20:
             self.__lenght = len
         else:
-            return TypeError
+            raise TypeError("uncorrect lenght")
     
     @property
     def width(self):
@@ -23,7 +23,7 @@ class Rectangle:
         if isinstance(wid, float) and wid > 0 and wid < 20:
             self.__width = wid
         else:
-            return TypeError
+            raise TypeError("uncorrect width")
 
     def perimeter(self):
         return (self.width + self.lenght)*2
@@ -43,7 +43,9 @@ def main():
         print('perimeter is: ', rectangle.perimeter())
         print('area is: ', rectangle.area())
         return { "success": True }
+    except TypeError:
+        return 'Uncorrect values!'
     except:
-        return TypeError
+        return 'Something went wrong!'
 
 print(main())
