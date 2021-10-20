@@ -2,11 +2,14 @@ from math import gcd
 
 class Rational:
     def __init__(self, numerator = 1, denominator = 1):
-        if denominator and isinstance(numerator,int) and isinstance(denominator,int):
-            self.__numerator = numerator/gcd(numerator, denominator)
-            self.__denominator = denominator/gcd(numerator, denominator)
+        if isinstance(numerator, int) and isinstance(denominator, int):
+            if denominator:
+                self.__numerator = numerator // gcd(numerator, denominator)
+                self.__denominator = denominator // gcd(numerator, denominator)
+            else:
+                raise ZeroDivisionError("Zero division")
         else:
-            return None
+            raise TypeError("Uncorrect type")
 
     def getFloat(self):
         return self.__numerator/self.__denominator
@@ -42,16 +45,11 @@ class Rational:
         return Rational(numerator, denominator)
 
 def main():
-    try:
-        a1, a2 = map(int, input().split('/'))
-        b1, b2 = map(int, input().split('/'))
-        a = Rational(a1, a2)
-        b = Rational(b1, b2)
-        print('Add: ', (a + b).getSimple())
-        print('Sub: ', (a - b).getSimple())
-        print('Mul: ', (a * b).getSimple())
-        print('Div: ', (a / b).getSimple())
-    except:
-        print('Something went wrong!')
+    a = Rational(3, 4)
+    b = Rational(2, 3)
+    print('Add: ', (a + b).getSimple())
+    print('Sub: ', (a - b).getSimple())
+    print('Mul: ', (a * b).getSimple())
+    print('Div: ', (a / b).getSimple())
 
 main()

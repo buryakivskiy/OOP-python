@@ -1,5 +1,9 @@
 class Rectangle:
     def __init__(self, lenght=1, width=1):
+        if not isinstance(lenght, float) or not isinstance(width, float):
+            raise TypeError("Uncorrect type") 
+        if lenght < 0 or lenght > 20 or width < 0 or width > 20:
+            raise ValueError("Uncorrect value")
         self.__lenght = lenght
         self.__width = width
 
@@ -9,10 +13,11 @@ class Rectangle:
 
     @lenght.setter
     def lenght(self, len):
-        if isinstance(len, float) and len > 0 and len < 20:
-            self.__lenght = len
-        else:
-            raise TypeError("uncorrect lenght")
+        if not isinstance(len, float): 
+            raise TypeError("Uncorrect type for lenght")
+        if len < 0 or len > 20:
+            raise ValueError("Uncorrect value for lenght")
+        self.__lenght = len
     
     @property
     def width(self):
@@ -20,10 +25,11 @@ class Rectangle:
 
     @width.setter
     def width(self, wid):
-        if isinstance(wid, float) and wid > 0 and wid < 20:
-            self.__width = wid
-        else:
-            raise TypeError("uncorrect width")
+        if not isinstance(wid, float): 
+            raise TypeError("Uncorrect type for width")
+        if wid < 0 or wid > 20:
+            raise ValueError("Uncorrect value for width")
+        self.__width = wid
 
     def perimeter(self):
         return (self.width + self.lenght)*2
@@ -32,20 +38,11 @@ class Rectangle:
         return self.width * self.lenght
 
 def main():
-    try:
-        print('Enter length and width: ')
-        len, wid = map(float, input().split())
-        rectangle = Rectangle()
-        rectangle.lenght = len
-        rectangle.width = wid
-        print('Lenght is: ', rectangle.lenght)
-        print('Width is: ', rectangle.width)
-        print('perimeter is: ', rectangle.perimeter())
-        print('area is: ', rectangle.area())
-        return { "success": True }
-    except TypeError:
-        return 'Uncorrect values!'
-    except:
-        return 'Something went wrong!'
+    rectangle = Rectangle(14.0, 2.0)
+    print('Lenght is: ', rectangle.lenght)
+    print('Width is: ', rectangle.width)
+    print('perimeter is: ', rectangle.perimeter())
+    print('area is: ', rectangle.area())
+    return { "success": True }
 
 print(main())
