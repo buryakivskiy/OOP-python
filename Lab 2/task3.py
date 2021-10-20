@@ -1,27 +1,39 @@
 class Customer:
     def __init__(self, fName, lName, pat, phone):
-        self.__firstName = fName
-        self.__lastName = lName
-        self.__patronimic = pat
-        self.__phone = phone
+        if isinstance(fName, str) and isinstance(lName, str) and isinstance(pat, str) and isinstance(phone, str):
+            self.__firstName = fName
+            self.__lastName = lName
+            self.__patronimic = pat
+            self.__phone = phone
+        else:
+            raise TypeError("Uncorrect type")
 
     def __str__(self):
         return f'firstName: {self.__firstName}\nlast name: {self.__lastName}'
     
 class Product:
     def __init__(self, price, description, dimension):
-        self.__price = price
-        self.__description = description
-        self.__dimension = dimension
-    
+        if isinstance(price, int) and isinstance(description, str) and isinstance(dimension, str):
+            if price > 0:
+                self.__price = price
+            else:
+                raise ValueError("Uncorrect value")
+            self.__description = description
+            self.__dimension = dimension
+        else:
+            raise TypeError("Uncorrect type")
+
     def getPrice(self):
         return self.__price
 
 class Order:
     def __init__(self, customer, products):
-        self.__customer = customer
-        self.__products = products
-        self.__price = self.__orderPrice__()
+        if isinstance(customer, Customer) and isinstance(products[0], Product):
+            self.__customer = customer
+            self.__products = products
+            self.__price = self.__orderPrice__()
+        else:
+            raise TypeError("Uncorrect type")
 
     def __orderPrice__(self):
         cost = 0
@@ -33,13 +45,10 @@ class Order:
         return f'{self.__customer}\ntotal price: {self.__price}'
 
 def main():
-    try:
-        serhiy = Customer('Serhiy', 'Buryakivskiy', 'Vitaliovich', '+380683389420')
-        iPhone = Product(399, 'Nice phone!', 'w: 8, l: 15')
-        iMac = Product(2399, 'Nice pc!', 'w: 45, l: 60')
-        serhiyOrder = Order(serhiy, [iPhone, iMac])
-        print(serhiyOrder)
-    except:
-        print('Something went wrong!')
+    serhiy = Customer('Serhiy', 'Buryakivskiy', 'Vitaliovich', '+380683389420')
+    iPhone = Product(399, 'Nice phone!', 'w: 8, l: 15')
+    iMac = Product(2399, 'Nice pc!', 'w: 45, l: 60')
+    serhiyOrder = Order(serhiy, [iPhone, iMac])
+    print(serhiyOrder)
 
 main()
