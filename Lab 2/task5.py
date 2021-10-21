@@ -4,15 +4,11 @@ import statistics
 MAX_STUDENTS = 20
  
 class Student:
-    surname_name = []
     def __init__(self, name, surname, recordBookId, grades):
         if not isinstance(name, str) or not isinstance(surname, str) or not isinstance(recordBookId, int) or not all(isinstance(mark, int) for mark in grades):
              raise TypeError("Uncorrect type")
-        if f'{name}{surname}' in self.surname_name:
-            raise ValueError("Uncorrect name and surname")
         self.name = name
         self.surname = surname
-        self.surname_name.append(f'{name}{surname}')
         self.recordBookId = recordBookId
         self.grades = grades
         self.averageMark = statistics.mean(grades)
@@ -22,11 +18,17 @@ class Student:
         
 
 class Group:
+    surname_name = []
     def __init__(self, students):
         if not all(isinstance(student, Student) for student in students):
             raise TypeError("Uncorrect type")
         if len(students) > MAX_STUDENTS:
             raise ValueError("Uncorrect number of students")
+        self.surname_name.append(students)
+        for i in range(len(students)):
+            for j in range(len(students)):
+                if f'{students[i]}' == f'{students[j]}' and i!=j:
+                    raise ValueError("Uncorrect name and surname")
         self.students = students
         self.bestFive = self.__top5__()
     
