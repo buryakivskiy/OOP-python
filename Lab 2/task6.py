@@ -1,4 +1,3 @@
-
 class Node:
     def __init__(self, code, number, price, left=None, right=None):
         self.code = code
