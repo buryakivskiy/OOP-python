@@ -47,5 +47,5 @@ student10 = Student("Yarik", "Duhanov", 1, [86, 45, 89, 100, 55])
 
 group = Group([student1, student2, student3, student4, student5, student6, student7, student8, student9, student10])
 
-for i in range(5):
+for i in range(len(group.bestFive)):
     print(f'{i+1}) {group.bestFive[i]}')
