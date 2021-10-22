@@ -1,4 +1,4 @@
-from os import name
+from os import name, pread
 import statistics
 
 MAX_STUDENTS = 20
@@ -9,12 +9,47 @@ class Student:
              raise TypeError("Uncorrect type")
         self.__name = name
         self.__surname = surname
-        self.recordBookId = recordBookId
-        self.grades = grades
-        self.averageMark = statistics.mean(grades)
+        self.__recordBookId = recordBookId
+        self.__grades = grades
+        self.averageMark = statistics.mean(self.__grades)
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        if not isinstance(name, str):
+            raise TypeError("Uncorrect type")
+        if not name:
+            raise ValueError("Uncorrect value")
+        self.__name = name
+
+    @property
+    def surname(self):
+        return self.__surname
+
+    @surname.setter
+    def surname(self, surname):
+        if not isinstance(surname, str):
+            raise TypeError("Uncorrect type")
+        if not surname:
+            raise ValueError("Uncorrect value")
+        self.__surname = surname
+
+    @property
+    def grades(self):
+        return self.__grades
+
+    @grades.setter
+    def grades(self, grades):
+        if not all(isinstance(mark, int) for mark in grades):
+            raise TypeError("Uncorrect type")
+        self.__grades = grades
+
     
     def __str__(self):
-        return f'{self.name} {self.surname}'
+        return f'{self.__name} {self.__surname}'
 
 class Group:
     surname_name = []
@@ -50,5 +85,3 @@ group = Group([student1, student2, student3, student4, student5, student6, stude
 
 for i in range(len(group.bestFive)):
     print(f'{i+1}) {group.bestFive[i]}')
-
-print(group.student)
