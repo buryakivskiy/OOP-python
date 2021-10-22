@@ -23,19 +23,19 @@ class BinarySearchTree:
     def insert(self, code, number, price):
         if not isinstance(code, int) or not isinstance(number, int) or not isinstance(price, int):
             raise TypeError("Uncorrect type for inserting")
-        if self.root == None:
+        if not self.root:
             self.root = Node(code, number, price)
         else:
             current = self.root
-            while 1:
+            while True:
                 if code < current.code:
-                    if current.left == None:
+                    if not current.left:
                         current.left = Node(code, number, price)
                         break
                     else:
                         current = current.left
                 elif code > current.code:
-                    if current.right == None:
+                    if not current.right:
                         current.right = Node(code, number, price)
                         break
                     else:

@@ -15,19 +15,19 @@ class Rational:
         return self.__numerator/self.__denominator
 
     def getSimple(self):
-        return f'{int(self.__numerator)}/{int(self.__denominator)}'
+        return f'{self.__numerator}/{self.__denominator}'
 
     def __add__(self, other):
         if not isinstance(other, Rational):
             raise TypeError("Rat type only")
-        numerator = int(self.__numerator*other.__denominator + self.__denominator*other.__numerator)
-        denominator = int(self.__denominator*other.__denominator)
+        numerator = self.__numerator*other.__denominator + self.__denominator*other.__numerator
+        denominator = self.__denominator*other.__denominator
         return Rational(numerator, denominator)
     def __sub__(self, other):
         if not isinstance(other, Rational):
             raise TypeError("Rat type only")
-        numerator = int(self.__numerator*other.__denominator - self.__denominator*other.__numerator)
-        denominator = int(self.__denominator*other.__denominator)
+        numerator = self.__numerator*other.__denominator - self.__denominator*other.__numerator
+        denominator = self.__denominator*other.__denominator
         return Rational(numerator, denominator)
 
     def __mul__(self, other):

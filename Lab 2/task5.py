@@ -7,15 +7,14 @@ class Student:
     def __init__(self, name, surname, recordBookId, grades):
         if not isinstance(name, str) or not isinstance(surname, str) or not isinstance(recordBookId, int) or not all(isinstance(mark, int) for mark in grades):
              raise TypeError("Uncorrect type")
-        self.name = name
-        self.surname = surname
+        self.__name = name
+        self.__surname = surname
         self.recordBookId = recordBookId
         self.grades = grades
         self.averageMark = statistics.mean(grades)
     
     def __str__(self):
         return f'{self.name} {self.surname}'
-        
 
 class Group:
     surname_name = []
@@ -51,3 +50,5 @@ group = Group([student1, student2, student3, student4, student5, student6, stude
 
 for i in range(len(group.bestFive)):
     print(f'{i+1}) {group.bestFive[i]}')
+
+print(group.student)
