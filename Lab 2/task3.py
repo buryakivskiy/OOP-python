@@ -1,12 +1,36 @@
 class Customer:
     def __init__(self, fName, lName, pat, phone):
         if isinstance(fName, str) and isinstance(lName, str) and isinstance(pat, str) and isinstance(phone, str):
-            self.__firstName = fName
-            self.__lastName = lName
+            self.firstName = fName
+            self.lastName = lName
             self.__patronimic = pat
             self.__phone = phone
         else:
             raise TypeError("Uncorrect type")
+    
+    @property
+    def firstName(self):
+        return self.__firstName
+
+    @firstName.setter
+    def firstName(self, name):
+        if not isinstance(name, str):
+            raise TypeError("Uncorrect type")
+        if not name:
+            raise ValueError("Uncorrect value")
+        self.__firstName = name
+
+    @property
+    def lastName(self):
+        return self.__lastName 
+
+    @lastName .setter
+    def lastName(self, surname):
+        if not isinstance(surname, str):
+            raise TypeError("Uncorrect type")
+        if not surname:
+            raise ValueError("Uncorrect value")
+        self.__lastName  = surname
 
     def __str__(self):
         return f'firstName: {self.__firstName}\nlast name: {self.__lastName}'
