@@ -5,12 +5,12 @@ MAX_STUDENTS = 20
  
 class Student:
     def __init__(self, name, surname, recordBookId, grades):
-        if not isinstance(name, str) or not isinstance(surname, str) or not isinstance(recordBookId, int) or not all(isinstance(mark, int) for mark in grades):
+        if not isinstance(recordBookId, int):
              raise TypeError("Uncorrect type")
-        self.__name = name
-        self.__surname = surname
-        self.__recordBookId = recordBookId
-        self.__grades = grades
+        self.name = name
+        self.surname = surname
+        self.recordBookId = recordBookId
+        self.grades = grades
         self.averageMark = statistics.mean(self.__grades)
 
     @property
@@ -52,23 +52,29 @@ class Student:
         return f'{self.__name} {self.__surname}'
 
 class Group:
-    surname_name = []
     def __init__(self, students):
-        if not all(isinstance(student, Student) for student in students):
-            raise TypeError("Uncorrect type")
-        if len(students) > MAX_STUDENTS:
-            raise ValueError("Uncorrect number of students")
-        self.surname_name.append(students)
-        for i in range(len(students)):
-            for j in range(len(students)):
-                if f'{students[i]}' == f'{students[j]}' and i!=j:
-                    raise ValueError("Uncorrect name and surname")
         self.students = students
         self.bestFive = self.__top5__()
     
     def __top5__(self):
         rate = sorted(self.students, key = lambda student: student.averageMark, reverse = True)
         return rate[0:5]
+
+    @property
+    def students(self):
+        return self.__students
+
+    @students.setter
+    def students(self, students):
+        if not all(isinstance(student, Student) for student in students):
+            raise TypeError("Uncorrect type")
+        if len(students) > MAX_STUDENTS:
+            raise ValueError("Uncorrect number of students")
+        for i in range(len(students)):
+            for j in range(len(students)):
+                if f'{students[i]}' == f'{students[j]}' and i!=j:
+                    raise ValueError("Uncorrect name and surname")
+        self.__students = students
 
 student1 = Student("Maks", "Brydiyuk", 1, [68, 45, 89, 100, 77])
 student2 = Student("Serhiy", "Buryakivskiy", 1, [70, 55, 89, 100, 70])
