@@ -47,10 +47,6 @@ class Student:
             raise TypeError("Uncorrect type")
         self.__grades = grades
 
-    
-    def __str__(self):
-        return f'{self.__name} {self.__surname}'
-
 class Group:
     def __init__(self, students):
         self.students = students
