@@ -104,7 +104,7 @@ class StudentTicket(RegularTicket):
         super().__init__(person, event, price * 0.5, eventDate)
 
 def main():
-    RegularTicket.createTicket("ticketDto.json")
+    print(RegularTicket.createTicket("ticketDto.json"))
     #print(RegularTicket.getTicket('2021-11-11-0-56-53-754854'))
 
 main()
