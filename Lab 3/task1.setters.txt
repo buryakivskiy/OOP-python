@@ -37,3 +37,8 @@
     @price.setter
     def price(self, price):
         self.__price = price
+
+person = input['_RegularTicket__person']
+price = input['_RegularTicket__price']
+event = input['_RegularTicket__event']
+eventDate = input['_RegularTicket__eventDate']
