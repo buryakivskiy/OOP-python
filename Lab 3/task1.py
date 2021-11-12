@@ -54,12 +54,15 @@ class RegularTicket:
             and not isinstance(student, bool)
         ):
             raise TypeError("Incorrect type")
+        daysToIvent = RegularTicket.daysToEvent(eventDate)
         if student == True:
             return StudentTicket(person, event, basePrice, eventDate)
-        elif RegularTicket.daysToEvent(eventDate) > 60:
+        elif daysToIvent > 60:
             return AdvanceTicket(person, event, basePrice, eventDate)
-        else:
+        elif daysToIvent < 10:
             return LateTicket(person, event, basePrice, eventDate)
+        else:
+            return RegularTicket(person, event, basePrice, eventDate)
 
     def generateNumber(self):
         currentTime = datetime.now()
@@ -105,6 +108,6 @@ class StudentTicket(RegularTicket):
 
 def main():
     print(RegularTicket.createTicket("ticketDto.json"))
-    #print(RegularTicket.getTicket('2021-11-11-0-56-53-754854'))
+    #print(RegularTicket.getTicket('2021-11-12-17-42-19-610712'))
 
 main()
