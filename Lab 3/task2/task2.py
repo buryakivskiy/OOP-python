@@ -14,7 +14,7 @@ VEGAN_PRICE = 90
 class Pizza:
     def __init__(self, name, ingredients, extraIngredients, price):
         self.name = name
-        self.inredients = ingredients + ' ' + extraIngredients
+        self.inredients = ingredients + ', ' + extraIngredients
         self.price = price
 
     @property
