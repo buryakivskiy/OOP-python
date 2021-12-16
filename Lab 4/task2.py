@@ -5,7 +5,7 @@ def leap_year(year):
     return not year % 4 and year % 100 or not year % 400
 
 
-class ChangeTime:#gives us the opportunity to make an object for addition with the Calendar class
+class ChangeTime:
     def __init__(self, days=0, months=0, years=0):
         if not isinstance(days, int):
             raise TypeError("Days have to be integer type only")
@@ -100,7 +100,7 @@ class Calendar:
 
     def __iadd__(self, other: ChangeTime):
         if not isinstance(other, ChangeTime):
-            raise TypeError("Second item have to be СhangeTime type only")
+            return NotImplemented
         self.year += other.years
         if self.month + other.months > 12:
             self.year += (self.month + other.months) // 12
@@ -139,7 +139,7 @@ class Calendar:
 
     def __isub__(self, other):
         if not isinstance(other, ChangeTime):
-            raise TypeError("Second item have to be changeTime type only")
+            return NotImplemented
         self.year -= other.years
         if self.month - other.months <= 0:
             if other.months < 12:
@@ -194,21 +194,21 @@ class Calendar:
 
     def __eq__(self, other):
         if not isinstance(other, Calendar):
-            raise TypeError("Second item have to be Calendar type only")
+            return NotImplemented
         if self.year == other.year and self.month == other.month and self.day == other.day:
             return True
         return False
 
     def __ne__(self, other):
         if not isinstance(other, Calendar):
-            raise TypeError("Second item have to be Calendar type only")
+            return NotImplemented
         if self.year != other.year or self.month != other.month or self.day != other.day:
             return True
         return False
 
     def __gt__(self, other):
         if not isinstance(other, Calendar):
-            raise TypeError("Second item have to be Calendar type only")
+            return NotImplemented
         if self.year > other.year:
             return True
         if self.year == other.year:
@@ -221,7 +221,7 @@ class Calendar:
 
     def __ge__(self, other):
         if not isinstance(other, Calendar):
-            raise TypeError("Second item have to be Calendar type only")
+            return NotImplemented
         if self.year > other.year:
             return True
         if self.year == other.year:
@@ -234,7 +234,7 @@ class Calendar:
 
     def __lt__(self, other):
         if not isinstance(other, Calendar):
-            raise TypeError("Second item have to be Calendar type only")
+            return NotImplemented
         if self.year < other.year:
             return True
         if self.year == other.year:
@@ -247,7 +247,8 @@ class Calendar:
 
     def __le__(self, other):
         if not isinstance(other, Calendar):
-            raise TypeError("Second item have to be Calendar type only")
+            #not im
+            return NotImplemented
         if self.year < other.year:
             return True
         if self.year == other.year:

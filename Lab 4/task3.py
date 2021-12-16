@@ -129,7 +129,7 @@ course = LocalCourse("it", teacher, ['math', 'eng'], 156)
 print(course)
 
 # err (Wrong type)
-course2 = OffsiteCourse("it", teacher, ['math', 'eng'], 156)
+# course2 = OffsiteCourse("it", teacher, ['math', 'eng'], 156)
 
 
     
